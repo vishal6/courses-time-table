@@ -4,6 +4,8 @@
 
 package coursetimetable;
 
+import javax.swing.UIManager;
+import javax.swing.UIManager.LookAndFeelInfo;
 import org.jdesktop.application.Application;
 import org.jdesktop.application.SingleFrameApplication;
 

@@ -10,24 +10,11 @@ package coursetimetable;
  */
 //here we will put all the procedures we will use
 public class procedures {
-    //prof
-    public String prof(){
-        String pr="select  id,first_name from prof";
-        return pr;
+    //log in
+    public String log_in(int ID){
+        String log = "select password from person where ID ='" +ID+ "'";
+        return log;
     }
-    //student
-    public String std(){
-        String s="select ID,first_name from student ";
-        return s;
-    }
-    
-    //TA
-    public String ta(){
-        String t = "select id, first_name from ta";
-        return t;
-    }
-    
-    //courses
     public  String course(){
         String c = "select id,name from courses";
         return c;

@@ -27,7 +27,7 @@ import javax.swing.UIManager.LookAndFeelInfo;
  * The application's main frame.
  */
 public class CourseTimeTableView extends FrameView {
-    connect c = new connect();                      //donnect driver class
+    connect c = new connect();                      //connect driver class
     procedures prc = new procedures();              //procedures object
     public ResultSet r;                             //data container
     char job;                                       //specify user's type (job)
@@ -48,6 +48,7 @@ public class CourseTimeTableView extends FrameView {
         initComponents();
             this.getFrame().setResizable(false);
             this.getFrame().setTitle("Log In");
+            this.getFrame().setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         // status bar initialization - message timeout, idle icon and busy animation, etc
         ResourceMap resourceMap = getResourceMap();
         int messageTimeout = resourceMap.getInteger("StatusBar.messageTimeout");
@@ -203,7 +204,7 @@ public class CourseTimeTableView extends FrameView {
         int id = Integer.parseInt(jTextField1.getText());           //gets the ID from the frame
         int pa = Integer.parseInt(jPasswordField1.getText());       //gets the password from the frame
         String query = prc.log_in(id);                              //gets the query to excute
-        r = c.connection(query);                                    
+        r = c.SearchConnection(query);                                    
         int temp = 0;
         type = extra.getTypeUser(id);                               //get the user's type
         try {
@@ -224,7 +225,7 @@ public class CourseTimeTableView extends FrameView {
             Logger.getLogger(CourseTimeTableView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1MouseClicked
-
+//asking user if he wants to exit or not
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
         int n = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Exit", JOptionPane.YES_NO_OPTION);

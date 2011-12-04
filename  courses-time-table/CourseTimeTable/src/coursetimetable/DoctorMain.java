@@ -4,22 +4,27 @@
  */
 
 /*
- * AdminMain.java
+ * DoctorMain.java
  *
- * Created on Dec 2, 2011, 7:59:35 PM
+ * Created on Dec 3, 2011, 4:30:57 AM
  */
 package coursetimetable;
 
+import java.awt.Dimension;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Nody
  */
-public class AdminMain extends javax.swing.JFrame {
+public class DoctorMain extends javax.swing.JFrame {
 
-    /** Creates new form AdminMain */
-    public AdminMain() {
+    /** Creates new form DoctorMain */
+    public DoctorMain() {
+        Dimension d =new Dimension(800, 500);
+        this.setMaximumSize(d);
+        this.setLocation(200, 100);
+        
         initComponents();
     }
 
@@ -32,56 +37,31 @@ public class AdminMain extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jTabbedPane2 = new javax.swing.JTabbedPane();
-        jTabbedPane3 = new javax.swing.JTabbedPane();
-        jTabbedPane4 = new javax.swing.JTabbedPane();
-        jTabbedPane5 = new javax.swing.JTabbedPane();
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(coursetimetable.CourseTimeTableApp.class).getContext().getResourceMap(DoctorMain.class);
+        setTitle(resourceMap.getString("Form.title")); // NOI18N
         setName("Form"); // NOI18N
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 OnClosing(evt);
             }
         });
 
-        jTabbedPane1.setTabPlacement(javax.swing.JTabbedPane.RIGHT);
-        jTabbedPane1.setName("jTabbedPane1"); // NOI18N
-
-        jTabbedPane2.setName("jTabbedPane2"); // NOI18N
-        org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(coursetimetable.CourseTimeTableApp.class).getContext().getResourceMap(AdminMain.class);
-        jTabbedPane1.addTab(resourceMap.getString("jTabbedPane2.TabConstraints.tabTitle"), jTabbedPane2); // NOI18N
-
-        jTabbedPane3.setName("jTabbedPane3"); // NOI18N
-        jTabbedPane1.addTab(resourceMap.getString("jTabbedPane3.TabConstraints.tabTitle"), jTabbedPane3); // NOI18N
-
-        jTabbedPane4.setName("jTabbedPane4"); // NOI18N
-        jTabbedPane1.addTab(resourceMap.getString("jTabbedPane4.TabConstraints.tabTitle"), jTabbedPane4); // NOI18N
-
-        jTabbedPane5.setName("jTabbedPane5"); // NOI18N
-        jTabbedPane1.addTab(resourceMap.getString("jTabbedPane5.TabConstraints.tabTitle"), jTabbedPane5); // NOI18N
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE)
-                .addGap(11, 11, 11))
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+//asking user if he wants to exit or not
     private void OnClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_OnClosing
         // TODO add your handling code here:
         int n = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Exit", JOptionPane.YES_NO_OPTION);
@@ -106,13 +86,13 @@ public class AdminMain extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdminMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DoctorMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdminMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DoctorMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdminMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DoctorMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdminMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DoctorMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -120,15 +100,10 @@ public class AdminMain extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new AdminMain().setVisible(true);
+                new DoctorMain().setVisible(true);
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTabbedPane jTabbedPane3;
-    private javax.swing.JTabbedPane jTabbedPane4;
-    private javax.swing.JTabbedPane jTabbedPane5;
     // End of variables declaration//GEN-END:variables
 }

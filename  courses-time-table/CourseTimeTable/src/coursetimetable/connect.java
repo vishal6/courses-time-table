@@ -5,7 +5,6 @@
 package coursetimetable;
 
 import java.sql.*;
-import javax.sql.*;
 import javax.swing.*;
 /**
  *
@@ -13,7 +12,8 @@ import javax.swing.*;
  */
 //this to connect to the database
 public class connect {
-    public ResultSet connection(String query){
+    //this fucntion used in searching in the database
+    public ResultSet SearchConnection(String query){
         try{
            String URL="jdbc:mysql://localhost:3306/course_timetable";
            String Driver="com.mysql.jdbc.Driver";
@@ -27,6 +27,22 @@ public class connect {
         catch(Exception ex){
             JOptionPane.showMessageDialog(null, ex.toString());
             return null;
+        }
+    }
+    
+    //this function used in Inserting/Updating/Deleting
+    public void UpdatingConnection(String query){
+        try{
+           String URL="jdbc:mysql://localhost:3306/course_timetable";
+           String Driver="com.mysql.jdbc.Driver";
+           
+           Class.forName(Driver);
+           Connection conn=DriverManager.getConnection(URL,"root","");
+           Statement stm=conn.createStatement();
+           stm.executeUpdate(query);
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(null, ex.toString());
         }
     }
     

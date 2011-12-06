@@ -207,6 +207,7 @@ public class CourseTimeTableView extends FrameView {
         r = c.SearchConnection(query);                                    
         int temp = 0;
         type = extra.getTypeUser(id);                               //get the user's type
+        int x= 0;
         try {
             while(r.next()){
                 temp = Integer.parseInt(r.getString(1));

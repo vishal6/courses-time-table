@@ -23,7 +23,10 @@ public class ExtraFunctions {
             else if(2000 <= id && id <= 2999)
                 c = 't';                        //the user is Teacher Assistant
             else if(3000 <= id && id <= 3999)
-                c = 's';                        //the user is student
+                c = 's';                        //the user is student 
+        }
+        if(9000 <= id && id <= 9999){
+            c = 'a';
         }
         return c;
     }
@@ -32,7 +35,19 @@ public class ExtraFunctions {
     public JFrame ChooseFrame(char type){
        JFrame f = null;
         if(type == 'd'){
+            f = new Professor();
+            f.setVisible(true);
+        }
+        else if(type == 't'){
             f = new Ta();
+            f.setVisible(true);
+        }
+        else if(type == 's'){
+            f = new Student();
+            f.setVisible(true);
+        }
+        else if(type == 'a'){
+            f = new AdminMain();
             f.setVisible(true);
         }
         return f;

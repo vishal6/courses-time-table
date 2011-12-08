@@ -10,6 +10,8 @@
  */
 package coursetimetable;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author mahmoud
@@ -369,6 +371,11 @@ public class AdminMain extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(800, 500));
         setName("Form"); // NOI18N
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                OnClosing(evt);
+            }
+        });
 
         jPanel1.setName("jPanel1"); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1421,6 +1428,13 @@ public class AdminMain extends javax.swing.JFrame {
         a.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void OnClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_OnClosing
+        // TODO add your handling code here:
+        int n = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Exit", JOptionPane.YES_NO_OPTION);
+        if(n == 0)
+            this.dispose();
+    }//GEN-LAST:event_OnClosing
 
     /**
      * @param args the command line arguments

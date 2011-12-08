@@ -11,7 +11,7 @@ import javax.swing.*;
  *
  * @author Nody
  */
-//this to connect to the database
+//connect to the database and search queries
 public class connect {
     public ResultSet connection(String query){
         try{
@@ -30,4 +30,21 @@ public class connect {
         }
     }
     
+    
+    
+    //connect to database for delete or update or insert
+    public void UpdateConnection(String query){
+        try{
+           String URL="jdbc:mysql://localhost:3306/course_timetable";
+           String Driver="com.mysql.jdbc.Driver";
+           
+           Class.forName(Driver);
+           Connection conn=DriverManager.getConnection(URL,"root","");
+           Statement stm=conn.createStatement();
+           stm.executeUpdate(query);
+        }
+        catch(Exception ex){
+            JOptionPane.showMessageDialog(null, ex.toString());
+        }
+    }
 }

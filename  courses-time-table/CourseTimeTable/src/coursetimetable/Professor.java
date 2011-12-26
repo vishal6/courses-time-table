@@ -10,24 +10,105 @@
  */
 package coursetimetable;
 
-import javax.swing.JOptionPane;
+import javax.swing.*;
+import java.sql.*;
 
 /**
  *
  * @author mahmoud
  */
 public class Professor extends javax.swing.JFrame {
+    connect c = new connect();                      //donnect driver class
+    procedures prc = new procedures();              //procedures object
+    public ResultSet r;                       //data container
+    ExtraFunctions extra = new ExtraFunctions();    //object to access the extra functions
+    String query;                                   //to get the query in it
+    int ID;
+    int check;
+    int count;                                       //counter
+    DefaultListModel list1=new DefaultListModel();
+    DefaultListModel list2=new DefaultListModel();
+    DefaultListModel days=new DefaultListModel();
+    
 
     /** Creates new form Admin_Main */
     public Professor() {
       
         this.setLocation(200, 100);
         this.setResizable(false);
+        this.setTitle("Professor Main Frame");
+        ID = extra.GetUserID();
+        
+        /*loading data in the frame*/
+        query = prc.search_for_person_ByID(Integer.toString(ID));
+        r = c.connection(query);
+        String[] data =new String[7];
+        try{
+            while(r.next()){
+                data[0]=r.getString(1);
+                data[1]=r.getString(2);
+                data[2]=r.getString(3);
+                data[3]=r.getString(4);
+                data[4]=r.getString(5);
+                data[5]=r.getString(6);
+                data[6]=r.getString(7);
+            }
+                
+            query = prc.get_Current_Year();
+            r=c.connection(query);
+            while(r.next()){
+                jLabel2.setText(r.getString(1));
+            }
+
+        }
+        catch(Exception ex){
+          JOptionPane.showMessageDialog(null, "ERROR"+ex.toString());
+        }
         
         initComponents();
       
-       
-         //this.Professor_Tap_Button_Visble(true);
+        jLabel32.setText(data[0]);
+        jLabel26.setText(data[1]);
+        jLabel30.setText(data[2]);
+        jTextField9.setText(data[3]);
+        if("M".equals(data[4]))
+            jComboBox2.setSelectedIndex(0);
+        else if("F".equals(data[4]))
+            jComboBox2.setSelectedIndex(1);
+        jTextField10.setText(data[5]);
+        jTextField11.setText(data[6]);
+        
+        //Loading data in the data tab
+        try{
+            query = prc.GetNumberofCoursesforProfessor(ID);
+            r = c.connection(query);
+            while(r.next()){
+                count = Integer.parseInt(r.getString(1));
+            }
+            query = prc.get_Prof_courses(String.valueOf(ID));
+            r = c.connection(query);
+            int[] crsID=new int[count];
+            for(int i=0; r.next(); i++){
+                crsID[i]=Integer.parseInt(r.getString(1));
+            }
+            for(int i=0; i<crsID.length; i++){
+                query = prc.GetCourseName(crsID[i]);
+                r = c.connection(query);
+                while(r.next()){
+                    list1.addElement(r.getString(1));
+                }
+            }
+            jList2.setModel(list1);
+            query = prc.get_Prof_Days(String.valueOf(ID));
+            r = c.connection(query);
+            while(r.next()){
+                days.addElement(r.getString(1));
+            }
+            jList1.setModel(days);
+        }
+        catch(Exception ex){
+          JOptionPane.showMessageDialog(null, "ERROR"+ex.toString());
+        }
     }
   
     
@@ -48,12 +129,14 @@ public class Professor extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         jTextField9 = new javax.swing.JTextField();
         jButton48 = new javax.swing.JButton();
-        jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
         jTextField11 = new javax.swing.JTextField();
+        jComboBox2 = new javax.swing.JComboBox();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
         jLabel23 = new javax.swing.JLabel();
@@ -61,13 +144,11 @@ public class Professor extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jButton45 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList2 = new javax.swing.JList();
-        jComboBox1 = new javax.swing.JComboBox();
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
@@ -120,11 +201,6 @@ public class Professor extends javax.swing.JFrame {
         });
         jPanel3.add(jButton48, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 230, 180, 30));
 
-        jLabel24.setText(resourceMap.getString("jLabel24.text")); // NOI18N
-        jLabel24.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jLabel24.setName("jLabel24"); // NOI18N
-        jPanel3.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, 150, 30));
-
         jLabel25.setText(resourceMap.getString("jLabel25.text")); // NOI18N
         jLabel25.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jLabel25.setName("jLabel25"); // NOI18N
@@ -148,6 +224,22 @@ public class Professor extends javax.swing.JFrame {
         jTextField11.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jTextField11.setName("jTextField11"); // NOI18N
         jPanel3.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, 150, 30));
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "M", "F" }));
+        jComboBox2.setToolTipText(resourceMap.getString("jComboBox2.toolTipText")); // NOI18N
+        jComboBox2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jComboBox2.setName("jComboBox2"); // NOI18N
+        jPanel3.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 270, 70, 40));
+
+        jLabel32.setToolTipText(resourceMap.getString("jLabel32.toolTipText")); // NOI18N
+        jLabel32.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jLabel32.setName("jLabel32"); // NOI18N
+        jPanel3.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, 150, 30));
+
+        jLabel31.setText(resourceMap.getString("jLabel31.text")); // NOI18N
+        jLabel31.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jLabel31.setName("jLabel31"); // NOI18N
+        jPanel3.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 70, 30));
 
         jLabel29.setText(resourceMap.getString("jLabel29.text")); // NOI18N
         jLabel29.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -180,53 +272,39 @@ public class Professor extends javax.swing.JFrame {
         jButton45.setText(resourceMap.getString("jButton45.text")); // NOI18N
         jButton45.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jButton45.setName("jButton45"); // NOI18N
+        jButton45.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton45MouseClicked(evt);
+            }
+        });
         jPanel2.add(jButton45, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 240, 160, 70));
-
-        jLabel4.setText("Select Day"); // NOI18N
-        jLabel4.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jLabel4.setName("jLabel4"); // NOI18N
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 120, 40));
 
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
         jList1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jList1.setName("jList1"); // NOI18N
         jScrollPane1.setViewportView(jList1);
 
-        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, 220, 90));
+        jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, 220, 110));
 
-        jLabel5.setText(" Courses"); // NOI18N
+        jLabel5.setText(" Professor's Courses"); // NOI18N
         jLabel5.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jLabel5.setName("jLabel5"); // NOI18N
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 30, 110, 40));
+        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 30, 150, 40));
 
         jScrollPane2.setName("jScrollPane2"); // NOI18N
 
         jList2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jList2.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
+        jList2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jList2.setName("jList2"); // NOI18N
         jScrollPane2.setViewportView(jList2);
 
         jPanel2.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 80, 220, 90));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jComboBox1.setName("jComboBox1"); // NOI18N
-        jPanel2.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 250, 120, 40));
-
-        jLabel6.setText("Avilable Days"); // NOI18N
+        jLabel6.setText("Professor's Available Days"); // NOI18N
         jLabel6.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jLabel6.setName("jLabel6"); // NOI18N
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 150, 40));
+        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 190, 40));
 
         jLabel8.setIcon(resourceMap.getIcon("jLabel8.icon")); // NOI18N
         jLabel8.setText(resourceMap.getString("jLabel8.text")); // NOI18N
@@ -286,9 +364,43 @@ public class Professor extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jTabbedPane1MouseClicked
-
+            //save changes
     private void jButton48MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton48MouseClicked
         // TODO add your handling code here:
+        String mail=null, gender=null;
+        String mobile=null;
+        int password=123456;
+        try{
+            if(!"".equals(jTextField11.getText())){
+                mobile=jTextField11.getText();
+            }
+            if(!"".equals(jTextField10.getText())){
+                mail=jTextField10.getText();
+            }
+            if(!"".equals(jTextField9.getText())){
+                if(Integer.parseInt(jTextField9.getText())>=100000 && Integer.parseInt(jTextField9.getText())<=999999){
+                  password=Integer.parseInt(jTextField9.getText());  
+                }
+                else
+                    JOptionPane.showMessageDialog(this, "Password is Incorrect Format, Please, Insert only 6 numbers","Error!!",JOptionPane.OK_OPTION);
+            }
+            gender=jComboBox2.getSelectedItem().toString();
+        }
+        catch(Exception ex){
+          JOptionPane.showMessageDialog(this, "Password is Incorrect Format, Please, Insert only 6 numbers","Error!!",JOptionPane.OK_OPTION);
+        }
+        try{
+            query=prc.UpdatePerson_PersonView(ID, mail, gender, mobile, password);
+            check=c.UpdateConnection(query);
+            if(check == 1 )
+             JOptionPane.showMessageDialog(null, "Updated Succefully", "Success Operation", JOptionPane.INFORMATION_MESSAGE);
+            else
+             JOptionPane.showMessageDialog(null, "Can't be Updated", "Unsuccess Operation", JOptionPane.INFORMATION_MESSAGE);
+                            
+        }
+        catch(Exception ex){
+          JOptionPane.showMessageDialog(this,"Error "+ex.toString() );
+        }
     }//GEN-LAST:event_jButton48MouseClicked
 
     private void OnClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_OnClosing
@@ -297,6 +409,13 @@ public class Professor extends javax.swing.JFrame {
         if(n == 0)
             this.dispose();
     }//GEN-LAST:event_OnClosing
+                    //add professor days
+    private void jButton45MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton45MouseClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        AddProDays f=new AddProDays(ID, this);
+        f.setVisible(true);
+    }//GEN-LAST:event_jButton45MouseClicked
 
     /**
      * @param args the command line arguments
@@ -312,13 +431,12 @@ public class Professor extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton45;
     private javax.swing.JButton jButton48;
-    private javax.swing.JComboBox jComboBox1;
+    private javax.swing.JComboBox jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
@@ -326,7 +444,8 @@ public class Professor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;

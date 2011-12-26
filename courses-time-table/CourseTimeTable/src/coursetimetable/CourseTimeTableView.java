@@ -201,11 +201,15 @@ public class CourseTimeTableView extends FrameView {
         // TODO add your handling code here:
         String t1 = jTextField1.getText();
         int id = Integer.parseInt(jTextField1.getText());           //gets the ID from the frame
+        extra.SetUserID(id);
         int pa = Integer.parseInt(jPasswordField1.getText());       //gets the password from the frame
+        boolean stdAccess=extra.GetStudentAccess();                 //gets the student access
+        boolean profAccess=extra.GetprofAccess();                   //gets the prof access
+        boolean TAAccess=extra.GetTAAccess();                       //gets the TA access
         String query = prc.log_in(id);                              //gets the query to excute
         r = c.connection(query);                                    
         int temp = 0;
-        type = extra.getTypeUser(id);                               //get the user's type
+        type = extra.getTypeUser(id);                               //get the user's type   
         try {
             while(r.next()){
                 temp = Integer.parseInt(r.getString(1));
@@ -214,10 +218,36 @@ public class CourseTimeTableView extends FrameView {
                 JOptionPane.showMessageDialog(null, "Can't Log you in because your ID is unavailable. please contact the your admin.", "Error", JOptionPane.ERROR_MESSAGE);
             }
             else if(temp == pa){
-                JFrame f = extra.ChooseFrame(type);
-                this.getFrame().dispose();
+                if(type=='d'){
+                    if(profAccess){
+                        JFrame f = extra.ChooseFrame(type);
+                        this.getFrame().dispose();
+                    }
+                    else 
+                        JOptionPane.showMessageDialog(null, "Professor Access Disabled");
+                }
+                else if(type=='t'){
+                    if(TAAccess){
+                        JFrame f = extra.ChooseFrame(type);
+                        this.getFrame().dispose();
+                    }
+                else 
+                        JOptionPane.showMessageDialog(null, "Teacher Assitant Access Disabled");
+                }
+
+                else if(type=='s'){
+                    if(stdAccess){
+                        JFrame f = extra.ChooseFrame(type);
+                        this.getFrame().dispose();
+                    }
+                    else
+                        JOptionPane.showMessageDialog(null, "Student Access Disabled");
+                }
+                else if(type=='a'){
+                    JFrame f = extra.ChooseFrame(type);
+                    this.getFrame().dispose();
+                }
             }
-                
             else 
                 JOptionPane.showMessageDialog(null, "wrong password or ID");
         } catch (Exception ex) {

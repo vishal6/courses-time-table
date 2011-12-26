@@ -1,6 +1,49 @@
 <?xml version="1.1" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.7" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.persistence.EntityManager" name="course_timetablePUEntityManager">
+      <Properties>
+        <Property name="persistenceUnit" type="java.lang.String" value="course_timetablePU"/>
+      </Properties>
+    </Component>
+    <Component class="javax.persistence.Query" name="takeCourseQuery">
+      <Properties>
+        <Property name="query" type="java.lang.String" value="SELECT t FROM TakeCourse t"/>
+        <Property name="entityManager" type="java.lang.Object" editor="org.netbeans.modules.form.j2ee.J2EEPropertyModifier$EMProperty$EntityManagerEditor">
+          <ComponentRef name="course_timetablePUEntityManager"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="java.util.List" name="takeCourseList">
+      <Properties>
+        <Property name="query" type="java.lang.Object" editor="org.netbeans.modules.form.j2ee.J2EEPropertyModifier$QueryBeanProperty$QueryEditor">
+          <ComponentRef name="takeCourseQuery"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;coursetimetable.TakeCourse&gt;"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.persistence.Query" name="coursesQuery">
+      <Properties>
+        <Property name="query" type="java.lang.String" value="SELECT c FROM Courses c"/>
+        <Property name="entityManager" type="java.lang.Object" editor="org.netbeans.modules.form.j2ee.J2EEPropertyModifier$EMProperty$EntityManagerEditor">
+          <ComponentRef name="course_timetablePUEntityManager"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="java.util.List" name="coursesList">
+      <Properties>
+        <Property name="query" type="java.lang.Object" editor="org.netbeans.modules.form.j2ee.J2EEPropertyModifier$QueryBeanProperty$QueryEditor">
+          <ComponentRef name="coursesQuery"/>
+        </Property>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;coursetimetable.Courses&gt;"/>
+      </AuxValues>
+    </Component>
+  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -55,6 +98,7 @@
                 <TitledBorder/>
               </Border>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" resourceKey="jTabbedPane1.toolTipText"/>
             <Property name="name" type="java.lang.String" value="jTabbedPane1" noResource="true"/>
             <Property name="selectedComponent" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
               <ComponentRef name="jPanel2"/>
@@ -104,20 +148,16 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="110" y="250" width="70" height="30"/>
+                      <AbsoluteConstraints x="90" y="250" width="70" height="30"/>
                     </Constraint>
                   </Constraints>
                 </Component>
                 <Component class="javax.swing.JComboBox" name="jComboBox1">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="4">
-                        <StringItem index="0" value="Item 1"/>
-                        <StringItem index="1" value="Item 2"/>
-                        <StringItem index="2" value="Item 3"/>
-                        <StringItem index="3" value="Item 4"/>
-                      </StringArray>
+                      <StringArray count="0"/>
                     </Property>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jComboBox1.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -127,12 +167,13 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="210" y="240" width="110" height="40"/>
+                      <AbsoluteConstraints x="190" y="240" width="110" height="40"/>
                     </Constraint>
                   </Constraints>
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTextField7">
                   <Properties>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jTextField7.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -149,6 +190,7 @@
                 <Component class="javax.swing.JTextField" name="jTextField6">
                   <Properties>
                     <Property name="text" type="java.lang.String" resourceKey="jTextField6.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jTextField6.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -181,6 +223,7 @@
                 <Component class="javax.swing.JButton" name="jButton11">
                   <Properties>
                     <Property name="text" type="java.lang.String" resourceKey="jButton11.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton11.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -216,6 +259,7 @@
                 <Component class="javax.swing.JButton" name="jButton13">
                   <Properties>
                     <Property name="text" type="java.lang.String" resourceKey="jButton13.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton13.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -223,6 +267,9 @@
                     </Property>
                     <Property name="name" type="java.lang.String" value="jButton13" noResource="true"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton13MouseClicked"/>
+                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="90" y="320" width="180" height="-1"/>
@@ -232,6 +279,7 @@
                 <Component class="javax.swing.JButton" name="jButton12">
                   <Properties>
                     <Property name="text" type="java.lang.String" resourceKey="jButton12.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton12.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -239,6 +287,9 @@
                     </Property>
                     <Property name="name" type="java.lang.String" value="jButton12" noResource="true"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton12MouseClicked"/>
+                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="260" y="240" width="180" height="-1"/>
@@ -268,14 +319,59 @@
                     <Component class="javax.swing.JTable" name="jTable1">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="4" rowCount="4">
-                            <Column editable="true" title="Title 1" type="java.lang.Object"/>
-                            <Column editable="true" title="Title 2" type="java.lang.Object"/>
-                            <Column editable="true" title="Title 3" type="java.lang.Object"/>
-                            <Column editable="true" title="Title 4" type="java.lang.Object"/>
+                          <Table columnCount="7" rowCount="51">
+                            <Column editable="false" title="ID" type="java.lang.Object"/>
+                            <Column editable="false" title="First Name" type="java.lang.Object"/>
+                            <Column editable="false" title="Last Name" type="java.lang.Object"/>
+                            <Column editable="false" title="Password" type="java.lang.Object"/>
+                            <Column editable="false" title="Gender" type="java.lang.Object"/>
+                            <Column editable="false" title="E-Mail" type="java.lang.Object"/>
+                            <Column editable="false" title="Mobile" type="java.lang.Object"/>
                           </Table>
                         </Property>
+                        <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                          <TableColumnModel selectionModel="0">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title resourceKey="jTable1.columnModel.title0"/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title resourceKey="jTable1.columnModel.title1"/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title resourceKey="jTable1.columnModel.title2"/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title resourceKey="jTable1.columnModel.title6"/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title resourceKey="jTable1.columnModel.title3"/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title resourceKey="jTable1.columnModel.title4"/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title resourceKey="jTable1.columnModel.title5"/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                          </TableColumnModel>
+                        </Property>
                         <Property name="name" type="java.lang.String" value="jTable1" noResource="true"/>
+                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                          <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                        </Property>
                       </Properties>
                     </Component>
                   </SubComponents>
@@ -283,6 +379,7 @@
                 <Component class="javax.swing.JButton" name="jButton2">
                   <Properties>
                     <Property name="text" type="java.lang.String" resourceKey="jButton2.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton2.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -290,6 +387,9 @@
                     </Property>
                     <Property name="name" type="java.lang.String" value="jButton2" noResource="true"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton2MouseClicked"/>
+                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="140" y="300" width="140" height="30"/>
@@ -299,6 +399,7 @@
                 <Component class="javax.swing.JButton" name="jButton3">
                   <Properties>
                     <Property name="text" type="java.lang.String" resourceKey="jButton3.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton3.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -335,6 +436,7 @@
                 <Component class="javax.swing.JTextField" name="jTextField1">
                   <Properties>
                     <Property name="text" type="java.lang.String" resourceKey="Student_Year_Text.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="Student_Year_Text.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -344,7 +446,7 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="180" y="230" width="150" height="-1"/>
+                      <AbsoluteConstraints x="180" y="250" width="150" height="-1"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -361,7 +463,7 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="90" y="230" width="70" height="30"/>
+                      <AbsoluteConstraints x="90" y="250" width="70" height="30"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -416,8 +518,28 @@
                     </Constraint>
                   </Constraints>
                 </Component>
+                <Component class="javax.swing.JLabel" name="jLabel6">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="jLabel6.text"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jLabel6" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[29, 21]"/>
+                    </Property>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="90" y="210" width="70" height="30"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
                 <Component class="javax.swing.JTextField" name="jTextField2">
                   <Properties>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="Student_Id_Text.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -431,23 +553,10 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField3">
-                  <Properties>
-                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                        <TitledBorder/>
-                      </Border>
-                    </Property>
-                    <Property name="name" type="java.lang.String" value="Student_Password_Text" noResource="true"/>
-                  </Properties>
-                  <Constraints>
-                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="180" y="90" width="150" height="-1"/>
-                    </Constraint>
-                  </Constraints>
-                </Component>
                 <Component class="javax.swing.JTextField" name="jTextField4">
                   <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="Student_Fn_Text.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="Student_Fn_Text.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -463,6 +572,7 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTextField5">
                   <Properties>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="Student_LN_Text.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -479,6 +589,7 @@
                 <Component class="javax.swing.JButton" name="jButton10">
                   <Properties>
                     <Property name="text" type="java.lang.String" resourceKey="jButton10.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton10.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -498,6 +609,7 @@
                 <Component class="javax.swing.JButton" name="jButton14">
                   <Properties>
                     <Property name="text" type="java.lang.String" resourceKey="jButton14.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton14.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -517,6 +629,7 @@
                 <Component class="javax.swing.JButton" name="jButton15">
                   <Properties>
                     <Property name="text" type="java.lang.String" resourceKey="jButton15.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton15.toolTipText"/>
                     <Property name="actionCommand" type="java.lang.String" resourceKey="jButton15.actionCommand"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -525,6 +638,9 @@
                     </Property>
                     <Property name="name" type="java.lang.String" value="jButton15" noResource="true"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton15MouseClicked"/>
+                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="160" y="310" width="110" height="40"/>
@@ -534,6 +650,7 @@
                 <Component class="javax.swing.JButton" name="jButton16">
                   <Properties>
                     <Property name="text" type="java.lang.String" resourceKey="jButton16.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton16.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -554,6 +671,7 @@
                 <Component class="javax.swing.JButton" name="jButton45">
                   <Properties>
                     <Property name="text" type="java.lang.String" resourceKey="jButton45.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton45.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -561,9 +679,51 @@
                     </Property>
                     <Property name="name" type="java.lang.String" value="jButton45" noResource="true"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton45MouseClicked"/>
+                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="420" y="290" width="140" height="30"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="jComboBox5">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="2">
+                        <StringItem index="0" value="M"/>
+                        <StringItem index="1" value="F"/>
+                      </StringArray>
+                    </Property>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jComboBox5.toolTipText"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jComboBox5" noResource="true"/>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="180" y="210" width="40" height="40"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JPasswordField" name="jPasswordField1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="jPasswordField1.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jPasswordField1.toolTipText"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jPasswordField1" noResource="true"/>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="180" y="90" width="150" height="-1"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -624,6 +784,7 @@
                 <Component class="javax.swing.JButton" name="jButton21">
                   <Properties>
                     <Property name="text" type="java.lang.String" resourceKey="jButton21.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton21.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -643,13 +804,9 @@
                 <Component class="javax.swing.JComboBox" name="jComboBox2">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="4">
-                        <StringItem index="0" value="Item 1"/>
-                        <StringItem index="1" value="Item 2"/>
-                        <StringItem index="2" value="Item 3"/>
-                        <StringItem index="3" value="Item 4"/>
-                      </StringArray>
+                      <StringArray count="0"/>
                     </Property>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jComboBox2.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -712,6 +869,7 @@
                 <Component class="javax.swing.JButton" name="jButton17">
                   <Properties>
                     <Property name="text" type="java.lang.String" resourceKey="jButton17.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton17.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -747,6 +905,7 @@
                 <Component class="javax.swing.JButton" name="jButton18">
                   <Properties>
                     <Property name="text" type="java.lang.String" resourceKey="jButton18.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton18.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -754,6 +913,9 @@
                     </Property>
                     <Property name="name" type="java.lang.String" value="jButton18" noResource="true"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton18MouseClicked"/>
+                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="90" y="320" width="180" height="-1"/>
@@ -763,6 +925,7 @@
                 <Component class="javax.swing.JButton" name="jButton19">
                   <Properties>
                     <Property name="text" type="java.lang.String" resourceKey="jButton19.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton19.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -770,6 +933,9 @@
                     </Property>
                     <Property name="name" type="java.lang.String" value="jButton19" noResource="true"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton19MouseClicked"/>
+                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="260" y="240" width="180" height="-1"/>
@@ -779,6 +945,7 @@
                 <Component class="javax.swing.JButton" name="jButton20">
                   <Properties>
                     <Property name="text" type="java.lang.String" resourceKey="jButton20.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton20.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -786,6 +953,9 @@
                     </Property>
                     <Property name="name" type="java.lang.String" value="jButton20" noResource="true"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton20MouseClicked"/>
+                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="140" y="300" width="140" height="30"/>
@@ -845,6 +1015,7 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTextField11">
                   <Properties>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jTextField11.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -890,8 +1061,26 @@
                     </Constraint>
                   </Constraints>
                 </Component>
+                <Component class="javax.swing.JPasswordField" name="jPasswordField2">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="jPasswordField2.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jPasswordField2.toolTipText"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jPasswordField2" noResource="true"/>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="180" y="90" width="150" height="-1"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
                 <Component class="javax.swing.JTextField" name="jTextField13">
                   <Properties>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jTextField13.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -907,6 +1096,7 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTextField14">
                   <Properties>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jTextField14.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -920,9 +1110,51 @@
                     </Constraint>
                   </Constraints>
                 </Component>
+                <Component class="javax.swing.JComboBox" name="jComboBox6">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="2">
+                        <StringItem index="0" value="M"/>
+                        <StringItem index="1" value="F"/>
+                      </StringArray>
+                    </Property>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jComboBox6.toolTipText"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jComboBox6" noResource="true"/>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="180" y="210" width="90" height="50"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel7">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="jLabel7.text"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jLabel7" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[29, 21]"/>
+                    </Property>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="90" y="210" width="70" height="30"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
                 <Component class="javax.swing.JButton" name="jButton22">
                   <Properties>
                     <Property name="text" type="java.lang.String" resourceKey="jButton22.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton22.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -942,6 +1174,7 @@
                 <Component class="javax.swing.JButton" name="jButton23">
                   <Properties>
                     <Property name="text" type="java.lang.String" resourceKey="jButton23.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton23.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -961,6 +1194,7 @@
                 <Component class="javax.swing.JButton" name="jButton24">
                   <Properties>
                     <Property name="text" type="java.lang.String" resourceKey="jButton24.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton24.toolTipText"/>
                     <Property name="actionCommand" type="java.lang.String" resourceKey="jButton24.actionCommand"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
@@ -969,6 +1203,9 @@
                     </Property>
                     <Property name="name" type="java.lang.String" value="jButton24" noResource="true"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton24MouseClicked"/>
+                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="160" y="310" width="110" height="40"/>
@@ -978,6 +1215,7 @@
                 <Component class="javax.swing.JButton" name="jButton25">
                   <Properties>
                     <Property name="text" type="java.lang.String" resourceKey="jButton25.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton25.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -1018,14 +1256,59 @@
                     <Component class="javax.swing.JTable" name="jTable2">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="4" rowCount="4">
-                            <Column editable="true" title="Title 1" type="java.lang.Object"/>
-                            <Column editable="true" title="Title 2" type="java.lang.Object"/>
-                            <Column editable="true" title="Title 3" type="java.lang.Object"/>
-                            <Column editable="true" title="Title 4" type="java.lang.Object"/>
+                          <Table columnCount="7" rowCount="51">
+                            <Column editable="false" title="ID" type="java.lang.Object"/>
+                            <Column editable="false" title="First Name" type="java.lang.Object"/>
+                            <Column editable="false" title="Last Name" type="java.lang.Object"/>
+                            <Column editable="false" title="Password" type="java.lang.Object"/>
+                            <Column editable="false" title="Gender" type="java.lang.Object"/>
+                            <Column editable="false" title="Mail" type="java.lang.Object"/>
+                            <Column editable="false" title="Mobile" type="java.lang.Object"/>
                           </Table>
                         </Property>
+                        <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                          <TableColumnModel selectionModel="0">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title resourceKey="jTable2.columnModel.title0"/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title resourceKey="jTable2.columnModel.title1"/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title resourceKey="jTable2.columnModel.title2"/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title resourceKey="jTable2.columnModel.title3"/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title resourceKey="jTable2.columnModel.title4"/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title resourceKey="jTable2.columnModel.title5"/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title resourceKey="jTable2.columnModel.title6"/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                          </TableColumnModel>
+                        </Property>
                         <Property name="name" type="java.lang.String" value="jTable2" noResource="true"/>
+                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                          <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                        </Property>
                       </Properties>
                     </Component>
                   </SubComponents>
@@ -1040,6 +1323,9 @@
                     </Property>
                     <Property name="name" type="java.lang.String" value="jButton44" noResource="true"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton44MouseClicked"/>
+                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="420" y="290" width="140" height="30"/>
@@ -1054,6 +1340,649 @@
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="0" y="0" width="700" height="450"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Container class="javax.swing.JPanel" name="jPanel12">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder/>
+                  </Border>
+                </Property>
+                <Property name="name" type="java.lang.String" value="jPanel12" noResource="true"/>
+              </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanel12MouseClicked"/>
+              </Events>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                  <JTabbedPaneConstraints tabName="TA">
+                    <Property name="tabTitle" type="java.lang.String" resourceKey="jPanel12.TabConstraints.tabTitle"/>
+                  </JTabbedPaneConstraints>
+                </Constraint>
+              </Constraints>
+
+              <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+                <Property name="useNullLayout" type="boolean" value="false"/>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="jLabel25">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="jLabel25.text"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jLabel25" noResource="true"/>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="110" y="250" width="70" height="30"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JButton" name="jButton46">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="jButton46.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton46.toolTipText"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jButton46" noResource="true"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton46MouseClicked"/>
+                  </Events>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="410" y="170" width="170" height="40"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="jComboBox7">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="0"/>
+                    </Property>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jComboBox7.toolTipText"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jComboBox7" noResource="true"/>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="210" y="240" width="110" height="40"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JTextField" name="jTextField10">
+                  <Properties>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jTextField10" noResource="true"/>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="510" y="20" width="90" height="30"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JTextField" name="jTextField24">
+                  <Properties>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jTextField24" noResource="true"/>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="210" y="20" width="90" height="30"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel30">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="jLabel30.text"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jLabel30" noResource="true"/>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="390" y="30" width="110" height="20"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JButton" name="jButton47">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="jButton47.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton47.toolTipText"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jButton47" noResource="true"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton47MouseClicked"/>
+                  </Events>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="400" y="320" width="180" height="-1"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel43">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="jLabel43.text"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jLabel43" noResource="true"/>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="90" y="30" width="110" height="20"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JButton" name="jButton48">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="jButton48.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton48.toolTipText"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jButton48" noResource="true"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton48MouseClicked"/>
+                  </Events>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="90" y="320" width="180" height="-1"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JButton" name="jButton49">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="jButton49.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton49.toolTipText"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jButton49" noResource="true"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton49MouseClicked"/>
+                  </Events>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="260" y="240" width="180" height="-1"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JButton" name="jButton50">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="jButton50.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton50.toolTipText"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jButton50" noResource="true"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton50MouseClicked"/>
+                  </Events>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="140" y="300" width="140" height="30"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel45">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" resourceKey="jLabel45.font"/>
+                    <Property name="text" type="java.lang.String" resourceKey="jLabel45.text"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jLabel45" noResource="true"/>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="90" y="130" width="90" height="30"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel46">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" resourceKey="jLabel46.font"/>
+                    <Property name="text" type="java.lang.String" resourceKey="jLabel46.text"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jLabel46" noResource="true"/>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="90" y="90" width="-1" height="30"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel47">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" resourceKey="jLabel47.font"/>
+                    <Property name="text" type="java.lang.String" resourceKey="jLabel47.text"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jLabel47" noResource="true"/>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="90" y="50" width="50" height="30"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JTextField" name="jTextField25">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jTextField25.toolTipText"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jTextField25" noResource="true"/>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="180" y="50" width="150" height="-1"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel48">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" resourceKey="jLabel48.font"/>
+                    <Property name="text" type="java.lang.String" resourceKey="jLabel48.text"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jLabel48" noResource="true"/>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="90" y="170" width="90" height="30"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JTextField" name="jTextField26">
+                  <Properties>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jTextField26" noResource="true"/>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="180" y="90" width="150" height="-1"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JPasswordField" name="jPasswordField3">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jPasswordField3.toolTipText"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jPasswordField3" noResource="true"/>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="180" y="90" width="150" height="-1"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JTextField" name="jTextField27">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jTextField27.toolTipText"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jTextField27" noResource="true"/>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="180" y="130" width="150" height="-1"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JTextField" name="jTextField28">
+                  <Properties>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jTextField28.toolTipText"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jTextField28" noResource="true"/>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="180" y="170" width="150" height="-1"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="jComboBox8">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="2">
+                        <StringItem index="0" value="M"/>
+                        <StringItem index="1" value="F"/>
+                      </StringArray>
+                    </Property>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jComboBox8.toolTipText"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jComboBox8" noResource="true"/>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="180" y="210" width="90" height="50"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel10">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="jLabel10.text"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jLabel10" noResource="true"/>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[29, 21]"/>
+                    </Property>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="90" y="210" width="70" height="30"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JButton" name="jButton51">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="jButton51.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton51.toolTipText"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jButton51" noResource="true"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton51MouseClicked"/>
+                  </Events>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="410" y="240" width="170" height="40"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JButton" name="jButton52">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="jButton52.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton52.toolTipText"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jButton52" noResource="true"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton52MouseClicked"/>
+                  </Events>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="480" y="380" width="-1" height="-1"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JButton" name="jButton53">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="jButton53.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton53.toolTipText"/>
+                    <Property name="actionCommand" type="java.lang.String" resourceKey="jButton53.actionCommand"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jButton53" noResource="true"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton53MouseClicked"/>
+                  </Events>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="160" y="310" width="110" height="40"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JButton" name="jButton54">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="jButton54.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton54.toolTipText"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jButton54" noResource="true"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton54MouseClicked"/>
+                    <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jButton54KeyPressed"/>
+                  </Events>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="90" y="390" width="70" height="20"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Container class="javax.swing.JScrollPane" name="jScrollPane5">
+                  <Properties>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jScrollPane5" noResource="true"/>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                  </AuxValues>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="90" y="50" width="530" height="190"/>
+                    </Constraint>
+                  </Constraints>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Component class="javax.swing.JTable" name="jTable5">
+                      <Properties>
+                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                          <Table columnCount="7" rowCount="51">
+                            <Column editable="false" title="ID" type="java.lang.Object"/>
+                            <Column editable="false" title="First Name" type="java.lang.Object"/>
+                            <Column editable="false" title="Last Name" type="java.lang.Object"/>
+                            <Column editable="false" title="Password" type="java.lang.Object"/>
+                            <Column editable="false" title="Gender" type="java.lang.Object"/>
+                            <Column editable="false" title="Mail" type="java.lang.Object"/>
+                            <Column editable="false" title="Mobile" type="java.lang.Object"/>
+                          </Table>
+                        </Property>
+                        <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                          <TableColumnModel selectionModel="0">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title resourceKey="jTable2.columnModel.title0"/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title resourceKey="jTable2.columnModel.title1"/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title resourceKey="jTable2.columnModel.title2"/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title resourceKey="jTable2.columnModel.title3"/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title resourceKey="jTable2.columnModel.title4"/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title resourceKey="jTable2.columnModel.title5"/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title resourceKey="jTable2.columnModel.title6"/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                          </TableColumnModel>
+                        </Property>
+                        <Property name="name" type="java.lang.String" value="jTable5" noResource="true"/>
+                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                          <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                        </Property>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
+                </Container>
+                <Component class="javax.swing.JButton" name="jButton55">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="jButton55.text"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jButton55" noResource="true"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton55MouseClicked"/>
+                  </Events>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="420" y="290" width="140" height="30"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel49">
+                  <Properties>
+                    <Property name="icon" type="javax.swing.Icon" resourceKey="jLabel49.icon"/>
+                    <Property name="name" type="java.lang.String" value="jLabel49" noResource="true"/>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="0" y="0" width="700" height="450"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JButton" name="jButton56">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="jButton56.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton56.toolTipText"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jButton56" noResource="true"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton56MouseClicked"/>
+                  </Events>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="140" y="380" width="140" height="30"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JButton" name="jButton57">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="jButton57.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton57.toolTipText"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jButton57" noResource="true"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton57MouseClicked"/>
+                  </Events>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="140" y="380" width="140" height="30"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -1083,9 +2012,30 @@
                 <Property name="useNullLayout" type="boolean" value="false"/>
               </Layout>
               <SubComponents>
+                <Component class="javax.swing.JButton" name="jButton58">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="jButton58.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton58.toolTipText"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jButton58" noResource="true"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton58MouseClicked"/>
+                  </Events>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="210" y="340" width="100" height="30"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
                 <Component class="javax.swing.JButton" name="jButton26">
                   <Properties>
                     <Property name="text" type="java.lang.String" resourceKey="jButton26.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton26.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -1113,13 +2063,14 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="210" y="20" width="90" height="30"/>
+                      <AbsoluteConstraints x="210" y="10" width="90" height="40"/>
                     </Constraint>
                   </Constraints>
                 </Component>
                 <Component class="javax.swing.JButton" name="jButton27">
                   <Properties>
                     <Property name="text" type="java.lang.String" resourceKey="jButton27.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton27.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -1148,13 +2099,14 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="90" y="30" width="110" height="20"/>
+                      <AbsoluteConstraints x="90" y="20" width="110" height="20"/>
                     </Constraint>
                   </Constraints>
                 </Component>
                 <Component class="javax.swing.JButton" name="jButton28">
                   <Properties>
                     <Property name="text" type="java.lang.String" resourceKey="jButton28.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton28.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -1162,6 +2114,9 @@
                     </Property>
                     <Property name="name" type="java.lang.String" value="jButton28" noResource="true"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton28MouseClicked"/>
+                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="90" y="320" width="180" height="-1"/>
@@ -1171,6 +2126,7 @@
                 <Component class="javax.swing.JButton" name="jButton29">
                   <Properties>
                     <Property name="text" type="java.lang.String" resourceKey="jButton29.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton29.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -1178,6 +2134,9 @@
                     </Property>
                     <Property name="name" type="java.lang.String" value="jButton29" noResource="true"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton29MouseClicked"/>
+                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="260" y="250" width="180" height="-1"/>
@@ -1187,6 +2146,7 @@
                 <Component class="javax.swing.JButton" name="jButton30">
                   <Properties>
                     <Property name="text" type="java.lang.String" resourceKey="jButton30.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton30.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -1194,6 +2154,9 @@
                     </Property>
                     <Property name="name" type="java.lang.String" value="jButton30" noResource="true"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton30MouseClicked"/>
+                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="140" y="380" width="140" height="30"/>
@@ -1251,8 +2214,95 @@
                     </Constraint>
                   </Constraints>
                 </Component>
+                <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+                  <Properties>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jScrollPane3" noResource="true"/>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                  </AuxValues>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="90" y="50" width="530" height="190"/>
+                    </Constraint>
+                  </Constraints>
+
+                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                  <SubComponents>
+                    <Component class="javax.swing.JTable" name="jTable3">
+                      <Properties>
+                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                          <Table columnCount="8" rowCount="50">
+                            <Column editable="false" title=" ID" type="java.lang.Object"/>
+                            <Column editable="false" title="Name" type="java.lang.Object"/>
+                            <Column editable="false" title="Lab HRs" type="java.lang.Object"/>
+                            <Column editable="false" title="Lec HRs" type="java.lang.Object"/>
+                            <Column editable="false" title="Sec HRs" type="java.lang.Object"/>
+                            <Column editable="false" title="Course Professor" type="java.lang.Object"/>
+                            <Column editable="false" title="Course Teacher Asistant" type="java.lang.Object"/>
+                            <Column editable="false" title="Year" type="java.lang.Object"/>
+                          </Table>
+                        </Property>
+                        <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                          <TableColumnModel selectionModel="0">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title resourceKey="jTable3.columnModel.title0"/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title resourceKey="jTable3.columnModel.title1"/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title resourceKey="jTable3.columnModel.title2"/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title resourceKey="jTable3.columnModel.title3"/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title resourceKey="jTable3.columnModel.title4"/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title resourceKey="jTable3.columnModel.title5"/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title resourceKey="jTable3.columnModel.title6"/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title resourceKey="jTable3.columnModel.title7"/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                          </TableColumnModel>
+                        </Property>
+                        <Property name="name" type="java.lang.String" value="jTable3" noResource="true"/>
+                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                          <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                        </Property>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
+                </Container>
                 <Component class="javax.swing.JTextField" name="jTextField16">
                   <Properties>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jTextField16.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -1285,6 +2335,7 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTextField17">
                   <Properties>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jTextField17.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -1300,6 +2351,7 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTextField18">
                   <Properties>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jTextField18.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -1332,6 +2384,7 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTextField20">
                   <Properties>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jTextField20.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -1382,13 +2435,9 @@
                 <Component class="javax.swing.JComboBox" name="jComboBox3">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="4">
-                        <StringItem index="0" value="Item 1"/>
-                        <StringItem index="1" value="Item 2"/>
-                        <StringItem index="2" value="Item 3"/>
-                        <StringItem index="3" value="Item 4"/>
-                      </StringArray>
+                      <StringArray count="0"/>
                     </Property>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jComboBox3.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -1405,13 +2454,9 @@
                 <Component class="javax.swing.JComboBox" name="jComboBox4">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="4">
-                        <StringItem index="0" value="Item 1"/>
-                        <StringItem index="1" value="Item 2"/>
-                        <StringItem index="2" value="Item 3"/>
-                        <StringItem index="3" value="Item 4"/>
-                      </StringArray>
+                      <StringArray count="0"/>
                     </Property>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jComboBox4.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -1427,6 +2472,7 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTextField21">
                   <Properties>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jTextField21.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -1460,6 +2506,7 @@
                 <Component class="javax.swing.JButton" name="jButton31">
                   <Properties>
                     <Property name="text" type="java.lang.String" resourceKey="jButton31.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton31.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -1479,6 +2526,7 @@
                 <Component class="javax.swing.JButton" name="jButton32">
                   <Properties>
                     <Property name="text" type="java.lang.String" resourceKey="jButton32.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton32.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -1498,6 +2546,7 @@
                 <Component class="javax.swing.JButton" name="jButton34">
                   <Properties>
                     <Property name="text" type="java.lang.String" resourceKey="jButton34.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton34.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -1515,44 +2564,10 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Container class="javax.swing.JScrollPane" name="jScrollPane3">
-                  <Properties>
-                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                        <TitledBorder/>
-                      </Border>
-                    </Property>
-                    <Property name="name" type="java.lang.String" value="jScrollPane3" noResource="true"/>
-                  </Properties>
-                  <AuxValues>
-                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-                  </AuxValues>
-                  <Constraints>
-                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="90" y="50" width="530" height="190"/>
-                    </Constraint>
-                  </Constraints>
-
-                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-                  <SubComponents>
-                    <Component class="javax.swing.JTable" name="jTable3">
-                      <Properties>
-                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="4" rowCount="4">
-                            <Column editable="true" title="Title 1" type="java.lang.Object"/>
-                            <Column editable="true" title="Title 2" type="java.lang.Object"/>
-                            <Column editable="true" title="Title 3" type="java.lang.Object"/>
-                            <Column editable="true" title="Title 4" type="java.lang.Object"/>
-                          </Table>
-                        </Property>
-                        <Property name="name" type="java.lang.String" value="jTable3" noResource="true"/>
-                      </Properties>
-                    </Component>
-                  </SubComponents>
-                </Container>
                 <Component class="javax.swing.JButton" name="jButton43">
                   <Properties>
                     <Property name="text" type="java.lang.String" resourceKey="jButton43.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton43.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -1616,7 +2631,7 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="90" y="90" width="70" height="30"/>
+                      <AbsoluteConstraints x="70" y="90" width="120" height="30"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -1633,12 +2648,13 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="90" y="50" width="50" height="30"/>
+                      <AbsoluteConstraints x="70" y="50" width="50" height="30"/>
                     </Constraint>
                   </Constraints>
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTextField23">
                   <Properties>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jTextField23.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -1648,12 +2664,14 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="180" y="90" width="150" height="-1"/>
+                      <AbsoluteConstraints x="200" y="90" width="130" height="-1"/>
                     </Constraint>
                   </Constraints>
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTextField22">
                   <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jTextField22.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -1663,13 +2681,14 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="180" y="50" width="150" height="-1"/>
+                      <AbsoluteConstraints x="200" y="50" width="130" height="-1"/>
                     </Constraint>
                   </Constraints>
                 </Component>
                 <Component class="javax.swing.JButton" name="jButton33">
                   <Properties>
                     <Property name="text" type="java.lang.String" resourceKey="jButton33.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton33.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -1704,6 +2723,7 @@
                 <Component class="javax.swing.JButton" name="jButton35">
                   <Properties>
                     <Property name="text" type="java.lang.String" resourceKey="jButton35.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton35.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -1723,6 +2743,7 @@
                 <Component class="javax.swing.JButton" name="jButton42">
                   <Properties>
                     <Property name="text" type="java.lang.String" resourceKey="jButton42.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton42.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -1730,6 +2751,9 @@
                     </Property>
                     <Property name="name" type="java.lang.String" value="jButton42" noResource="true"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton42MouseClicked"/>
+                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="150" y="180" width="140" height="30"/>
@@ -1755,6 +2779,7 @@
                 <Component class="javax.swing.JButton" name="jButton36">
                   <Properties>
                     <Property name="text" type="java.lang.String" resourceKey="jButton36.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton36.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -1762,6 +2787,9 @@
                     </Property>
                     <Property name="name" type="java.lang.String" value="jButton36" noResource="true"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton36MouseClicked"/>
+                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="90" y="320" width="180" height="-1"/>
@@ -1771,6 +2799,7 @@
                 <Component class="javax.swing.JButton" name="jButton37">
                   <Properties>
                     <Property name="text" type="java.lang.String" resourceKey="jButton37.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton37.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -1778,6 +2807,9 @@
                     </Property>
                     <Property name="name" type="java.lang.String" value="jButton37" noResource="true"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton37MouseClicked"/>
+                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="260" y="250" width="180" height="-1"/>
@@ -1787,6 +2819,7 @@
                 <Component class="javax.swing.JButton" name="jButton38">
                   <Properties>
                     <Property name="text" type="java.lang.String" resourceKey="jButton38.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton38.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -1794,6 +2827,9 @@
                     </Property>
                     <Property name="name" type="java.lang.String" value="jButton38" noResource="true"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton38MouseClicked"/>
+                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="150" y="180" width="140" height="30"/>
@@ -1803,6 +2839,7 @@
                 <Component class="javax.swing.JButton" name="jButton39">
                   <Properties>
                     <Property name="text" type="java.lang.String" resourceKey="jButton39.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton39.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -1822,6 +2859,7 @@
                 <Component class="javax.swing.JButton" name="jButton40">
                   <Properties>
                     <Property name="text" type="java.lang.String" resourceKey="jButton40.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton40.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -1841,6 +2879,7 @@
                 <Component class="javax.swing.JButton" name="jButton41">
                   <Properties>
                     <Property name="text" type="java.lang.String" resourceKey="jButton41.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton41.toolTipText"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                         <TitledBorder/>
@@ -1881,14 +2920,29 @@
                     <Component class="javax.swing.JTable" name="jTable4">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="4" rowCount="4">
-                            <Column editable="true" title="Title 1" type="java.lang.Object"/>
-                            <Column editable="true" title="Title 2" type="java.lang.Object"/>
-                            <Column editable="true" title="Title 3" type="java.lang.Object"/>
-                            <Column editable="true" title="Title 4" type="java.lang.Object"/>
+                          <Table columnCount="2" rowCount="50">
+                            <Column editable="false" title="Classroom&apos;s ID" type="java.lang.Object"/>
+                            <Column editable="false" title="Classroom Department&apos;s Name" type="java.lang.Object"/>
                           </Table>
                         </Property>
+                        <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                          <TableColumnModel selectionModel="0">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title resourceKey="jTable4.columnModel.title0"/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title resourceKey="jTable4.columnModel.title1"/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                          </TableColumnModel>
+                        </Property>
                         <Property name="name" type="java.lang.String" value="jTable4" noResource="true"/>
+                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                          <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                        </Property>
                       </Properties>
                     </Component>
                   </SubComponents>
@@ -1937,9 +2991,29 @@
                     </Property>
                     <Property name="name" type="java.lang.String" value="St_Acc_Yes_R" noResource="true"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jRadioButton1MouseClicked"/>
+                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="80" y="170" width="-1" height="-1"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabel12">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" resourceKey="jLabel12.font"/>
+                    <Property name="text" type="java.lang.String" resourceKey="jLabel12.text"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jLabel12" noResource="true"/>
+                  </Properties>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="350" y="250" width="260" height="40"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -1953,9 +3027,12 @@
                     </Property>
                     <Property name="name" type="java.lang.String" value="Prof_Acc_Yes_R" noResource="true"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jRadioButton3MouseClicked"/>
+                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="360" y="230" width="-1" height="-1"/>
+                      <AbsoluteConstraints x="350" y="230" width="-1" height="-1"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -1973,23 +3050,6 @@
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="110" y="170" width="220" height="40"/>
-                    </Constraint>
-                  </Constraints>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel12">
-                  <Properties>
-                    <Property name="font" type="java.awt.Font" resourceKey="jLabel12.font"/>
-                    <Property name="text" type="java.lang.String" resourceKey="jLabel12.text"/>
-                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                        <TitledBorder/>
-                      </Border>
-                    </Property>
-                    <Property name="name" type="java.lang.String" value="jLabel12" noResource="true"/>
-                  </Properties>
-                  <Constraints>
-                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="390" y="230" width="240" height="40"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -2018,7 +3078,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Creat Time Table">
+                  <JTabbedPaneConstraints tabName="Create Time Table">
                     <Property name="tabTitle" type="java.lang.String" resourceKey="jPanel6.TabConstraints.tabTitle"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
@@ -2028,6 +3088,26 @@
                 <Property name="useNullLayout" type="boolean" value="false"/>
               </Layout>
               <SubComponents>
+                <Component class="javax.swing.JButton" name="jButton4">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" resourceKey="jButton4.text"/>
+                    <Property name="toolTipText" type="java.lang.String" resourceKey="jButton4.toolTipText"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                        <TitledBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="name" type="java.lang.String" value="jButton4" noResource="true"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jButton4MouseClicked"/>
+                  </Events>
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                      <AbsoluteConstraints x="90" y="90" width="200" height="120"/>
+                    </Constraint>
+                  </Constraints>
+                </Component>
                 <Component class="javax.swing.JLabel" name="jLabel4">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" resourceKey="jLabel4.icon"/>

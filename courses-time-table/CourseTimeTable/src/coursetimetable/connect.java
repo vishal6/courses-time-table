@@ -33,7 +33,8 @@ public class connect {
     
     
     //connect to database for delete or update or insert
-    public void UpdateConnection(String query){
+    public int UpdateConnection(String query){
+        int check = 0;
         try{
            String URL="jdbc:mysql://localhost:3306/course_timetable";
            String Driver="com.mysql.jdbc.Driver";
@@ -41,10 +42,11 @@ public class connect {
            Class.forName(Driver);
            Connection conn=DriverManager.getConnection(URL,"root","");
            Statement stm=conn.createStatement();
-           stm.executeUpdate(query);
+           check = stm.executeUpdate(query);
         }
         catch(Exception ex){
             JOptionPane.showMessageDialog(null, ex.toString());
         }
+        return check;
     }
 }

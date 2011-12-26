@@ -3,6 +3,8 @@
   <persistence-unit name="course_timetablePU" transaction-type="RESOURCE_LOCAL">
     <provider>oracle.toplink.essentials.PersistenceProvider</provider>
     <class>coursetimetable.Person</class>
+    <class>coursetimetable.TakeCourse</class>
+    <class>coursetimetable.Courses</class>
     <properties>
       <property name="toplink.jdbc.user" value="root"/>
       <property name="toplink.jdbc.password" value=""/>

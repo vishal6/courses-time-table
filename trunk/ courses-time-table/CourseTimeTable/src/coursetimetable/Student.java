@@ -10,24 +10,113 @@
  */
 package coursetimetable;
 
-import javax.swing.JOptionPane;
+
+
+import java.sql.ResultSet;
+import javax.swing.*;
 
 /**
  *
  * @author mahmoud
  */
 public class Student extends javax.swing.JFrame {
-
+    connect c = new connect();                      //donnect driver class
+    procedures prc = new procedures();              //procedures object
+    public ResultSet r;                       //data container
+    ExtraFunctions extra = new ExtraFunctions();    //object to access the extra functions
+    String query;                                   //to get the query in it
+    int ID;
+    int check;
+    int count;                                       //counter
+    
+    
     /** Creates new form Admin_Main */
     public Student() {
       
         this.setLocation(200, 100);
         this.setResizable(false);
+        this.setTitle("Student Main Frame");
+        ID = extra.GetUserID();
+        /*loading data in the frame*/
+        query = prc.search_for_person_ByID(Integer.toString(ID));
+        r = c.connection(query);
+        String[] data =new String[7];
+        try{
+            while(r.next()){
+                data[0]=r.getString(1);
+                data[1]=r.getString(2);
+                data[2]=r.getString(3);
+                data[3]=r.getString(4);
+                data[4]=r.getString(5);
+                data[5]=r.getString(6);
+                data[6]=r.getString(7);
+            }
+               
+            query = prc.get_Current_Year();
+            r=c.connection(query);
+            while(r.next()){
+                jLabel2.setText(r.getString(1));
+            }
+
+        }
+        catch(Exception ex){
+          JOptionPane.showMessageDialog(null, "ERROR"+ex.toString());
+        }
         
         initComponents();
-      
-       
-         //this.Professor_Tap_Button_Visble(true);
+        
+        jLabel32.setText(data[0]);
+        jLabel26.setText(data[1]);
+        jLabel30.setText(data[2]);
+        jTextField9.setText(data[3]);
+        if("M".equals(data[4]))
+            jComboBox1.setSelectedIndex(0);
+        else if("F".equals(data[4]))
+            jComboBox1.setSelectedIndex(1);
+        jTextField10.setText(data[5]);
+        jTextField11.setText(data[6]);
+        
+        
+        //loading courses to the list
+        query =prc.GetNumberofCourseforStudent(ID);
+        r=c.connection(query);
+        try{
+            while(r.next()){
+                count=Integer.parseInt(r.getString(1));
+            }
+        }
+        catch(Exception ex){
+          JOptionPane.showMessageDialog(null, "ERROR"+ex.toString());
+        }
+        query=prc.GetTakensCourseID(ID);
+        r=c.connection(query);
+        int[] crsIDs=new int[count];
+        try{
+            for(int i=0; r.next(); i++){
+               crsIDs[i]=Integer.parseInt(r.getString(1)); 
+            }
+        }
+        catch(Exception ex){
+          JOptionPane.showMessageDialog(null, "ERROR"+ex.toString());
+        }
+        String[] crs=new String[count];
+        for(int i=0; i<count; i++){
+            query=prc.GetCourseName(crsIDs[i]);
+            r = c.connection(query);
+            try{
+                while(r.next()){
+                    crs[i]=r.getString(1);
+                }
+            }
+            catch(Exception ex){
+                JOptionPane.showMessageDialog(null, "ERROR"+ex.toString());
+            }
+        }
+        DefaultListModel listmodel=new DefaultListModel();
+        for(int i=0; i<count; i++){
+            listmodel.addElement(crs[i]);
+        }
+        jList1.setModel(listmodel);
     }
   
     
@@ -48,11 +137,13 @@ public class Student extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         jTextField9 = new javax.swing.JTextField();
         jButton48 = new javax.swing.JButton();
-        jLabel24 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox();
         jTextField11 = new javax.swing.JTextField();
         jLabel29 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
@@ -101,6 +192,7 @@ public class Student extends javax.swing.JFrame {
         jLabel21.setName("jLabel21"); // NOI18N
         jPanel3.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 320, 90, 30));
 
+        jTextField9.setToolTipText(resourceMap.getString("jTextField9.toolTipText")); // NOI18N
         jTextField9.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jTextField9.setName("jTextField9"); // NOI18N
         jPanel3.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 320, 150, 30));
@@ -115,17 +207,13 @@ public class Student extends javax.swing.JFrame {
         });
         jPanel3.add(jButton48, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 230, 180, 30));
 
-        jLabel24.setText(resourceMap.getString("jLabel24.text")); // NOI18N
-        jLabel24.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jLabel24.setName("jLabel24"); // NOI18N
-        jPanel3.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 270, 150, 30));
-
         jLabel25.setText(resourceMap.getString("jLabel25.text")); // NOI18N
         jLabel25.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jLabel25.setName("jLabel25"); // NOI18N
         jPanel3.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 70, 30));
 
         jLabel26.setText(resourceMap.getString("jLabel26.text")); // NOI18N
+        jLabel26.setToolTipText(resourceMap.getString("jLabel26.toolTipText")); // NOI18N
         jLabel26.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jLabel26.setName("jLabel26"); // NOI18N
         jPanel3.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 90, 150, 30));
@@ -140,6 +228,23 @@ public class Student extends javax.swing.JFrame {
         jLabel28.setName("jLabel28"); // NOI18N
         jPanel3.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, 70, 30));
 
+        jLabel31.setText(resourceMap.getString("jLabel31.text")); // NOI18N
+        jLabel31.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jLabel31.setName("jLabel31"); // NOI18N
+        jPanel3.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 70, 30));
+
+        jLabel32.setToolTipText(resourceMap.getString("jLabel32.toolTipText")); // NOI18N
+        jLabel32.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jLabel32.setName("jLabel32"); // NOI18N
+        jPanel3.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, 150, 30));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "M", "F" }));
+        jComboBox1.setToolTipText(resourceMap.getString("jComboBox1.toolTipText")); // NOI18N
+        jComboBox1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jComboBox1.setName("jComboBox1"); // NOI18N
+        jPanel3.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 270, 70, 40));
+
+        jTextField11.setToolTipText(resourceMap.getString("jTextField11.toolTipText")); // NOI18N
         jTextField11.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jTextField11.setName("jTextField11"); // NOI18N
         jPanel3.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, 150, 30));
@@ -149,6 +254,7 @@ public class Student extends javax.swing.JFrame {
         jLabel29.setName("jLabel29"); // NOI18N
         jPanel3.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 220, 70, 30));
 
+        jLabel30.setToolTipText(resourceMap.getString("jLabel30.toolTipText")); // NOI18N
         jLabel30.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jLabel30.setName("jLabel30"); // NOI18N
         jPanel3.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 150, 30));
@@ -158,6 +264,7 @@ public class Student extends javax.swing.JFrame {
         jLabel23.setName("jLabel23"); // NOI18N
         jPanel3.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, 70, 30));
 
+        jTextField10.setToolTipText(resourceMap.getString("jTextField10.toolTipText")); // NOI18N
         jTextField10.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jTextField10.setName("jTextField10"); // NOI18N
         jPanel3.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, 150, 30));
@@ -173,8 +280,14 @@ public class Student extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton45.setText(resourceMap.getString("jButton45.text")); // NOI18N
+        jButton45.setToolTipText(resourceMap.getString("jButton45.toolTipText")); // NOI18N
         jButton45.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jButton45.setName("jButton45"); // NOI18N
+        jButton45.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton45MouseClicked(evt);
+            }
+        });
         jPanel2.add(jButton45, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 240, 160, 70));
 
         jLabel4.setText("Finished Courses"); // NOI18N
@@ -185,11 +298,6 @@ public class Student extends javax.swing.JFrame {
         jScrollPane1.setName("jScrollPane1"); // NOI18N
 
         jList1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jList1.setName("jList1"); // NOI18N
         jScrollPane1.setViewportView(jList1);
 
@@ -253,9 +361,34 @@ public class Student extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_jTabbedPane1MouseClicked
-
+                    //Save changes
     private void jButton48MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton48MouseClicked
         // TODO add your handling code here:
+        try{
+            long MobileNumber=Long.parseLong(jTextField11.getText())&00001111111;                  //removing the code operator of the mobile Number
+       int id=Integer.parseInt(jLabel32.getText());
+       if(MobileNumber>=100000 && MobileNumber<=999999){
+       String mobile=jTextField11.getText();
+       String mail=jTextField10.getText();
+       if(Integer.parseInt(jTextField9.getText())>=100000 && Integer.parseInt(jTextField9.getText())<=999999){
+            int password=Integer.parseInt((jTextField9.getText()));
+       String gender=jComboBox1.getSelectedItem().toString();
+       query=prc.UpdatePerson_PersonView(id, mail, gender, mobile, password);
+       check=c.UpdateConnection(query);
+       if(check == 1)
+        JOptionPane.showMessageDialog(null, "Updated Succefully", "Success Operation", JOptionPane.INFORMATION_MESSAGE);
+       else
+        JOptionPane.showMessageDialog(null, "Can't be Updated", "Unsuccess Operation", JOptionPane.INFORMATION_MESSAGE);
+       }
+        else
+           JOptionPane.showMessageDialog(null, "Please, enter valid ID(between 100000 and 999999)", "Unsuccess Operation", JOptionPane.INFORMATION_MESSAGE);
+       }
+       else
+           JOptionPane.showMessageDialog(null, "Please, enter valid Mobile Number", "Unsuccess Operation", JOptionPane.INFORMATION_MESSAGE);
+        }
+        catch(Exception ex){
+          JOptionPane.showMessageDialog(null, "ERROR"+ex.toString());
+        }
     }//GEN-LAST:event_jButton48MouseClicked
 
     private void OnClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_OnClosing
@@ -264,6 +397,13 @@ public class Student extends javax.swing.JFrame {
         if(n == 0)
             this.dispose();
     }//GEN-LAST:event_OnClosing
+            //course registeration
+    private void jButton45MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton45MouseClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        CourseRegister f=new CourseRegister(ID, this);
+        f.setVisible(true);
+    }//GEN-LAST:event_jButton45MouseClicked
 
     /**
      * @param args the command line arguments
@@ -279,12 +419,12 @@ public class Student extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton45;
     private javax.swing.JButton jButton48;
+    private javax.swing.JComboBox jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
@@ -292,6 +432,8 @@ public class Student extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;

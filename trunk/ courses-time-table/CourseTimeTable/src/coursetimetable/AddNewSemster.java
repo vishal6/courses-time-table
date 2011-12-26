@@ -11,6 +11,7 @@
 package coursetimetable;
 
 import javax.swing.JOptionPane;
+import java.sql.*;
 
 /**
  *
@@ -18,17 +19,48 @@ import javax.swing.JOptionPane;
  */
 public class AddNewSemster extends javax.swing.JFrame {
 
+    connect c = new connect();                      //donnect driver class
+    procedures prc = new procedures();              //procedures object
+    public ResultSet r;                       //data container
+    ExtraFunctions extra = new ExtraFunctions();    //object to access the extra functions
+    String query;                                   //to get the query in it
+    int ID;
+    int check;
+    int count;                                       //counter
+    AdminMain frame;
+    
     /** Creates new form Admin_Main */
-    public AddNewSemster() {
+    public AddNewSemster(AdminMain ad) {
       
         this.setLocation(200, 100);
         this.setResizable(false);
-        
+        frame=ad;
         initComponents();
         Add_New_Visble(true);
-        Course_Visble(false);
-       
-         //this.Professor_Tap_Button_Visble(true);
+        //Course_Visble(false);
+        this.setTitle("Add New Semster");
+        this.setLocation(200, 100);
+        this.setResizable(false);
+        //loading in data in jtable
+        query = prc.GetStudentNewSmesterView();
+        r = c.connection(query);
+        int i = 0;                                      //counter
+        try {
+            while (r.next()){
+                    for(int j = 1; j<= 3; j++){
+                        jTable1.setValueAt(r.getString(j), i, j-1);
+                    }
+                i++;
+                
+            query = prc.get_Current_Year();
+            r=c.connection(query);
+            while(r.next()){
+                jLabel2.setText(r.getString(1));
+            }
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "ERROR"+ex.toString());
+        }
     }
     private  void Add_New_Visble(boolean  b)
     {
@@ -47,16 +79,16 @@ public class AddNewSemster extends javax.swing.JFrame {
      
     
     }
-    private  void Course_Visble(boolean  b)
-    {
-     jLabel20.setVisible(b);
-     jButton13.setVisible(b);
-     jButton17.setVisible(b);
+    //private  void Course_Visble(boolean  b)
+    //{
+     //jLabel20.setVisible(b);
+     //jButton13.setVisible(b);
+     //jButton17.setVisible(b);
      
      
      
     
-    }
+   // }
     
 
 
@@ -75,14 +107,13 @@ public class AddNewSemster extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
-        jButton13 = new javax.swing.JButton();
         jButton17 = new javax.swing.JButton();
-        jLabel20 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
         jButton45 = new javax.swing.JButton();
         jLabel19 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
         jButton46 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -101,7 +132,7 @@ public class AddNewSemster extends javax.swing.JFrame {
         setName("Form"); // NOI18N
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
-                OnClosing(evt);
+                Closing(evt);
             }
         });
 
@@ -110,22 +141,12 @@ public class AddNewSemster extends javax.swing.JFrame {
 
         jTabbedPane1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jTabbedPane1.setName("jTabbedPane1"); // NOI18N
-        jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTabbedPane1MouseClicked(evt);
-            }
-        });
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jPanel2.setName("jPanel2"); // NOI18N
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         org.jdesktop.application.ResourceMap resourceMap = org.jdesktop.application.Application.getInstance(coursetimetable.CourseTimeTableApp.class).getContext().getResourceMap(AddNewSemster.class);
-        jButton13.setText(resourceMap.getString("jButton13.text")); // NOI18N
-        jButton13.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jButton13.setName("jButton13"); // NOI18N
-        jPanel2.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 310, 180, -1));
-
         jButton17.setText(resourceMap.getString("jButton17.text")); // NOI18N
         jButton17.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jButton17.setName("jButton17"); // NOI18N
@@ -134,17 +155,7 @@ public class AddNewSemster extends javax.swing.JFrame {
                 jButton17MouseClicked(evt);
             }
         });
-        jButton17.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jButton17KeyPressed(evt);
-            }
-        });
         jPanel2.add(jButton17, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 390, 70, 20));
-
-        jLabel20.setText(resourceMap.getString("jLabel20.text")); // NOI18N
-        jLabel20.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
-        jLabel20.setName("jLabel20"); // NOI18N
-        jPanel2.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 40, 110, 30));
 
         jTextField7.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jTextField7.setName("jTextField7"); // NOI18N
@@ -170,9 +181,24 @@ public class AddNewSemster extends javax.swing.JFrame {
         jLabel18.setName("jLabel18"); // NOI18N
         jPanel2.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 320, 110, 20));
 
+        jButton1.setText(resourceMap.getString("jButton1.text")); // NOI18N
+        jButton1.setToolTipText(resourceMap.getString("jButton1.toolTipText")); // NOI18N
+        jButton1.setName("jButton1"); // NOI18N
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
+            }
+        });
+        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 70, 170, 50));
+
         jButton12.setText(resourceMap.getString("jButton12.text")); // NOI18N
         jButton12.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jButton12.setName("jButton12"); // NOI18N
+        jButton12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton12MouseClicked(evt);
+            }
+        });
         jPanel2.add(jButton12, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 100, 180, -1));
 
         jButton46.setText(resourceMap.getString("jButton46.text")); // NOI18N
@@ -190,17 +216,78 @@ public class AddNewSemster extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Student ID", "Student First Name", "Student Last Name"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTable1.setName("jTable1"); // NOI18N
         jScrollPane1.setViewportView(jTable1);
+        jTable1.getColumnModel().getColumn(0).setResizable(false);
+        jTable1.getColumnModel().getColumn(0).setHeaderValue(resourceMap.getString("jTable1.columnModel.title0")); // NOI18N
+        jTable1.getColumnModel().getColumn(1).setResizable(false);
+        jTable1.getColumnModel().getColumn(1).setHeaderValue(resourceMap.getString("jTable1.columnModel.title1")); // NOI18N
+        jTable1.getColumnModel().getColumn(2).setResizable(false);
+        jTable1.getColumnModel().getColumn(2).setHeaderValue(resourceMap.getString("jTable1.columnModel.title2")); // NOI18N
 
         jPanel2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 530, 190));
 
@@ -227,7 +314,7 @@ public class AddNewSemster extends javax.swing.JFrame {
         jLabel8.setIcon(resourceMap.getIcon("jLabel8.icon")); // NOI18N
         jLabel8.setText(resourceMap.getString("jLabel8.text")); // NOI18N
         jLabel8.setName("jLabel8"); // NOI18N
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 450));
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 20, 700, 450));
 
         jTabbedPane1.addTab(resourceMap.getString("jPanel2.TabConstraints.tabTitle"), jPanel2); // NOI18N
 
@@ -279,46 +366,61 @@ public class AddNewSemster extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
-        
-        
-    }//GEN-LAST:event_jTabbedPane1MouseClicked
-
     private void jButton16KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton16KeyPressed
-        
-   
        
 }//GEN-LAST:event_jButton16KeyPressed
-
+                    
     private void jButton16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton16MouseClicked
      
-            this.dispose();
-       AdminMain m = new AdminMain();
-       m.setVisible(true);
 }//GEN-LAST:event_jButton16MouseClicked
-
+                        //Go Back
     private void jButton17MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton17MouseClicked
         // TODO add your handling code here:
-        Add_New_Visble(true);
-        Course_Visble(false);
+        this.dispose();
+       frame.setVisible(true);
     }//GEN-LAST:event_jButton17MouseClicked
-
-    private void jButton17KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton17KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton17KeyPressed
-
+            //go to the success fail frame
     private void jButton46MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton46MouseClicked
-        // selsect buuton
-        Add_New_Visble(false);
-        Course_Visble(true);
+        if(jTable1.isColumnSelected(0) || jTable1.isColumnSelected(1) || jTable1.isColumnSelected(2)){
+        this.setVisible(false);
+        int id=Integer.parseInt(jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString());
+        Success_Fail f=new Success_Fail(id, this);
+        f.setVisible(true);
+        }
     }//GEN-LAST:event_jButton46MouseClicked
 
-    private void OnClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_OnClosing
+    private void Closing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_Closing
         // TODO add your handling code here:
-        int n = JOptionPane.showConfirmDialog(null, "Are you sure you want to exit?", "Exit", JOptionPane.YES_NO_OPTION);
-        if(n == 0)
-            this.dispose();
-    }//GEN-LAST:event_OnClosing
+        frame.setEnabled(true);
+        this.dispose();
+    }//GEN-LAST:event_Closing
+                    //searches by first and last name
+    private void jButton12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton12MouseClicked
+        // TODO add your handling code here:
+        String FirstName = jTextField6.getText().toString();
+        String LastName = jTextField7.getText().toString();
+        extra.ResetTable(jTable1, 24, 2);
+        query = prc.search_for_person_ByName(FirstName, LastName,3000,3999);
+        r = c.connection(query);
+        int i = 0;                                      //counter
+        try {
+            while (r.next()){
+                    for(int j = 1; j<= 3; j++){
+                        jTable1.setValueAt(r.getString(j), i, j-1);
+                    }
+                i++;
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "ERROR"+ex.toString());
+        }
+    }//GEN-LAST:event_jButton12MouseClicked
+            //go to year parameters
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        // TODO add your handling code here:
+        this.setVisible(false);
+        System_Constants f = new System_Constants(this);
+        f.setVisible(true);
+    }//GEN-LAST:event_jButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -327,13 +429,13 @@ public class AddNewSemster extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new AddNewSemster().setVisible(true);
+                new AddNewSemster(null).setVisible(true);
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton45;
@@ -342,7 +444,6 @@ public class AddNewSemster extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel8;
